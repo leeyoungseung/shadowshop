@@ -1,9 +1,9 @@
 package com.shadowshop.app.auth.service;
 
-import com.shadowshop.app.dto.AdminLoginDTO;
+import com.shadowshop.app.dto.LoginAdminDTO;
 
 public interface AuthAdminService {
 
-	public AdminLoginDTO login(AdminLoginDTO dto);
+	public LoginAdminDTO login(LoginAdminDTO dto);
 	public boolean logout();
 }

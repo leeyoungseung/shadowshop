@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.shadowshop.app.auth.service.AuthAdminService;
-import com.shadowshop.app.dto.AdminLoginDTO;
+import com.shadowshop.app.dto.LoginAdminDTO;
 
 @Service
 public class AuthAdminServiceImpl implements AuthAdminService {
@@ -15,7 +15,7 @@ public class AuthAdminServiceImpl implements AuthAdminService {
 	private static final Logger logger = LoggerFactory.getLogger(AuthAdminServiceImpl.class);
 	
 	@Override
-	public AdminLoginDTO login(AdminLoginDTO dto) {
+	public LoginAdminDTO login(LoginAdminDTO dto) {
 		dto.setLastLoginTime(new Date());
 		return dto;
 	}

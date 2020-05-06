@@ -33,7 +33,11 @@
 </head>
 <body>
 <h1>Shadow Shop Login Page</h1>
-
+<c:if test="${not empty msg}">
+<div style="border: 1px solid powderblue;">
+ <h2>${msg}</h2>
+</div>
+</c:if>
 <div style="border: 1px solid powderblue;position:relative;left:200px;top:150px;">
 <h2> Please Login Administrator Account</h2>
 <form:form commandName="loginForm" action="/auth/login" method="POST" 

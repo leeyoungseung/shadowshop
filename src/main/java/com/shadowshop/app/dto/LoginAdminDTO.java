@@ -1,8 +1,9 @@
 package com.shadowshop.app.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AdminLoginDTO {
+public class LoginAdminDTO implements Serializable{
 
 	private String webid;
 	private String password;
