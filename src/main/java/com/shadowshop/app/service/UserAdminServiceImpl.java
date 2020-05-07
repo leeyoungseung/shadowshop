@@ -16,10 +16,10 @@ public class UserAdminServiceImpl implements UserAdminService {
 	public List<UserInfoAdminDTO> getUsers() {
 		List<UserInfoAdminDTO> list = new ArrayList<UserInfoAdminDTO>();
 		list.add(new UserInfoAdminDTO(1,"lee-y1@gmail.com","lee-y1","david1",new Date(),new Date(),"normal"));
-		list.add(new UserInfoAdminDTO(1,"lee-y2@gmail.com","lee-y2","david2",new Date(),new Date(),"block"));
-		list.add(new UserInfoAdminDTO(1,"lee-y3@gmail.com","lee-y3","david3",new Date(),new Date(),"special"));
-		list.add(new UserInfoAdminDTO(1,"lee-y4@gmail.com","lee-y4","david4",new Date(),new Date(),"removed"));
-		list.add(new UserInfoAdminDTO(1,"lee-y5@gmail.com","lee-y5","david5",new Date(),new Date(),"normal"));
+		list.add(new UserInfoAdminDTO(2,"lee-y2@gmail.com","lee-y2","david2",new Date(),new Date(),"block"));
+		list.add(new UserInfoAdminDTO(3,"lee-y3@gmail.com","lee-y3","david3",new Date(),new Date(),"special"));
+		list.add(new UserInfoAdminDTO(4,"lee-y4@gmail.com","lee-y4","david4",new Date(),new Date(),"removed"));
+		list.add(new UserInfoAdminDTO(5,"lee-y5@gmail.com","lee-y5","david5",new Date(),new Date(),"normal"));
 		return list;
 	}
 
