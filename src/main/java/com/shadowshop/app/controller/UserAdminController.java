@@ -26,6 +26,13 @@ public class UserAdminController {
 		return "/userAdmin/userAdminMain";
 	}
 	
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String getUserInfoOne() {
+		
+		
+		return "";
+	}
+	
 	
 	
 }

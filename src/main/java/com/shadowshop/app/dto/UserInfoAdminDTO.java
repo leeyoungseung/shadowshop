@@ -3,7 +3,7 @@ package com.shadowshop.app.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class UserInfoAdminDTO implements Serializable{
+public class UserInfoAdminDTO extends BaseDTO {
 
 	int userNo;
 	String userWebId;
@@ -12,8 +12,6 @@ public class UserInfoAdminDTO implements Serializable{
 	Date userJoinedDate;
 	Date userLastLoginDate;
 	String userStatus;
-	
-	
 	
 	public UserInfoAdminDTO(int userNo, String userWebId, String userName, String userNickName, Date userJoinedDate,
 			Date userLastLoginDate, String userStatus) {
@@ -69,12 +67,12 @@ public class UserInfoAdminDTO implements Serializable{
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
+
 	@Override
 	public String toString() {
 		return "UserInfoAdminDTO [userNo=" + userNo + ", userWebId=" + userWebId + ", userName=" + userName
 				+ ", userNickName=" + userNickName + ", userJoinedDate=" + userJoinedDate + ", userLastLoginDate="
 				+ userLastLoginDate + ", userStatus=" + userStatus + "]";
 	}
-	
 	
 }

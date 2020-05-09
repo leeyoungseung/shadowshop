@@ -57,10 +57,10 @@
 {{#each .}}
         <tr class="searchedList">
             <td>{{userNo}}</td>
-            <td>{{userWebId}}</td>
+            <td><a href="">{{userWebId}}</a></td>
             <td>{{userName}}</td>
             <td>{{userNickName}}</td>
-            <td>{{userJoinedDate}}</td>
+            <td>{{prettifyDate userJoinedDate}}</td>
             <td>{{userStatus}}</td>
         </tr>
 {{/each}}
@@ -68,6 +68,14 @@
 <script>
 $(document).ready(function() {
 
+	Handlebars.registerHelper("prettifyDate", function(timeValue) {
+		  var dateObj = new Date(timeValue);
+		  var year = dateObj.getFullYear();
+		  var month = dateObj.getMonth() + 1;
+		  var date = dateObj.getDate();
+		  return year + "/" + month + "/" + date;
+		 });
+	
     var printData = function(searchArr, target, templateObject) {
     	var template = Handlebars.compile(templateObject.html());
     	var html = template(searchArr);
