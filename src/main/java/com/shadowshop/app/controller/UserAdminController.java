@@ -21,7 +21,7 @@ public class UserAdminController {
 	
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String UserAdminMain(Model model) {
-		logger.info("Welcome to Login Page");
+		logger.info("Welcome to UserAdminMain Page");
 		
 		return "/userAdmin/userAdminMain";
 	}

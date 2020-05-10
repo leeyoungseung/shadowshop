@@ -49,6 +49,13 @@
 
     </tbody>
     </table>
+    <div class="box-footer" >
+        <div class="text-center" style="height: 100px;line-height: 100px;text-align: center;">
+            <ul id="paging" style="list-style:none;margin:0;padding:0;">
+
+            </ul>
+        </div>
+    </div>
     </div>
 </div>
 </body>
@@ -65,6 +72,7 @@
         </tr>
 {{/each}}
 </script>
+
 <script>
 $(document).ready(function() {
 
@@ -86,12 +94,27 @@ $(document).ready(function() {
     function getList(actionURL) {
     	$.getJSON(actionURL, function(data){
     		printData(data,$('#searchedResultsBody'),$("#searchTemplate"));
+    	    var startSu = "<c:out value='${paging.startPage}'/>";
+    	    var endSu = "<c:out value='${paging.endPage}'/>"
+    	    alert(startSu);
+    	    alert(endSu);
     	});
     }
     
     $("#searchStart").on("click", function(){
-    	getList("/userAdminRest/list");
+    	getList("/userAdminRest/list/");
     });
+    
+    var prev = "<li style=\"margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;\">&laquo; prev </li>";
+    var end  = "<li style=\"margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;\">end &raquo;</li>";
+    var pages = "";
+    
+    //var startSu = ${paging.startPage};
+    //var endSu = ${paging.endPage};
+    //for (var i = startSu; i<endSu; i++) {
+    //	pages += "<li style=\"margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;\">&nbsp;<a href=\"javascript:void(0)\" onclick=\"getList();\">"+ i +"&nbsp;</li>"
+    //}
+    
     
 });
 </script>

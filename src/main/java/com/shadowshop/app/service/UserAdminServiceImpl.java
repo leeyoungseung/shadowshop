@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.shadowshop.app.dto.PagingDTO;
 import com.shadowshop.app.dto.UserInfoAdminDTO;
 import com.shadowshop.app.user.service.UserAdminService;
 
 @Service
 public class UserAdminServiceImpl implements UserAdminService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserAdminServiceImpl.class);
 
 	@Override
-	public List<UserInfoAdminDTO> getUsers() {
+	public List<UserInfoAdminDTO> getUsers(PagingDTO dto) {
 		List<UserInfoAdminDTO> list = new ArrayList<UserInfoAdminDTO>();
 		list.add(new UserInfoAdminDTO(1,"lee-y1@gmail.com","lee-y1","david1",new Date(),new Date(),"normal"));
 		list.add(new UserInfoAdminDTO(2,"lee-y2@gmail.com","lee-y2","david2",new Date(),new Date(),"block"));
@@ -30,7 +35,28 @@ public class UserAdminServiceImpl implements UserAdminService {
 		list.add(new UserInfoAdminDTO(13,"lee-y13@gmail.com","lee-y13","david13",new Date(),new Date(),"special"));
 		list.add(new UserInfoAdminDTO(14,"lee-y14@gmail.com","lee-y14","david14",new Date(),new Date(),"removed"));
 		list.add(new UserInfoAdminDTO(15,"lee-y15@gmail.com","lee-y15","david15",new Date(),new Date(),"normal"));
-		return list;
+		
+		int start = dto.getCurrentPage();
+		if (start == 1) {
+			start = 0;
+		}
+		int perCount = dto.getPerPageCount();
+		List<UserInfoAdminDTO> returnList = new ArrayList<UserInfoAdminDTO>();
+		int su = 0;
+		for(UserInfoAdminDTO var : list) {
+			logger.info("[1] su : "+su+", start : "+start+", perCount : "+perCount);
+			if(su < start) {
+				su++;
+				continue;
+			}
+			if (perCount <= su) {
+				break;
+			}
+			returnList.add(var);
+			su++;
+		}
+		
+		return returnList;
 	}
 
 	@Override
