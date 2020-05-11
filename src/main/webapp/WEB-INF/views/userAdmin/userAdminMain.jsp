@@ -73,7 +73,7 @@
 {{/each}}
 </script>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function() {
 
 	Handlebars.registerHelper("prettifyDate", function(timeValue) {
@@ -91,31 +91,50 @@ $(document).ready(function() {
     	target.append(html);
     }
     
-    function getList(actionURL) {
+    var printPaging = function (pu, target){
+    	var pagingStr = "";
+    	if (pu.prev) {
+    		pagingStr += "<li style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>"
+    		+ "<a href='javascript:void(0)' onclick='getList(\''/userAdminRest/list/"+(pu.startPage - 1) +"'\')'>&laquo; prev</a></li>";
+    	}
+    	
+    	for (var i = pu.startPage, len = pu.endPage; i <= len; i++) {
+    		var strClass = pu.dto.currentPage == i ? 'class=active' : '';
+    		pagingStr += "<li class='pageNum' style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>&nbsp;"+ i +"&nbsp;</li>"
+    	}
+    	
+    	
+    	if (pu.next){
+    		pagingStr += "<li style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>"
+        	+ "<a href='javascript:void(0)' onclick='getList(\''/userAdminRest/list/"+(pu.endPage - 1) +"'\')'>end &raquo;</a></li>";
+    	}
+    	
+    	target.html(pagingStr);
+    }
+    
+    function getList(no) {
+    	var actionURL = "/userAdminRest/list";
+    	actionURL += no;
     	$.getJSON(actionURL, function(data){
-    		printData(data,$('#searchedResultsBody'),$("#searchTemplate"));
-    	    var startSu = "<c:out value='${paging.startPage}'/>";
-    	    var endSu = "<c:out value='${paging.endPage}'/>"
-    	    alert(startSu);
-    	    alert(endSu);
+    		printData(data.userInfoList,$('#searchedResultsBody'),$("#searchTemplate"));
+    		printPaging(data.pagingUtil,$('#paging'));
     	});
     }
     
+    
     $("#searchStart").on("click", function(){
-    	getList("/userAdminRest/list/");
+    	getList("");
     });
     
-    var prev = "<li style=\"margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;\">&laquo; prev </li>";
-    var end  = "<li style=\"margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;\">end &raquo;</li>";
-    var pages = "";
+    $(document).on("click",".pageNum", function(){
+    	var num = $(this).text();
+    	num *=1;
+    	param="?currentPage=";
+    	param += num;
+    	getList(param);
+    });
     
-    //var startSu = ${paging.startPage};
-    //var endSu = ${paging.endPage};
-    //for (var i = startSu; i<endSu; i++) {
-    //	pages += "<li style=\"margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;\">&nbsp;<a href=\"javascript:void(0)\" onclick=\"getList();\">"+ i +"&nbsp;</li>"
-    //}
-    
-    
+
 });
 </script>
 </html>

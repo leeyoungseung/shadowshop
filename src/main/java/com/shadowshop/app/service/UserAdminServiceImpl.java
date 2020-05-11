@@ -37,19 +37,28 @@ public class UserAdminServiceImpl implements UserAdminService {
 		list.add(new UserInfoAdminDTO(15,"lee-y15@gmail.com","lee-y15","david15",new Date(),new Date(),"normal"));
 		
 		int start = dto.getCurrentPage();
-		if (start == 1) {
-			start = 0;
-		}
-		int perCount = dto.getPerPageCount();
+		int perCount = dto.getPerPageCount(); //5개 까지 출력
+		int size = list.size();     //전체 사이즈
+		int realPageSu = (int) Math.ceil(list.size() / perCount); //몇페이지가 나오는 지 
+		//start가 2라면 6번째 요소부터 격납해야함
+		//start가 3이면 11부터 격납해야함
+		 
+		//2 * 5 = 10 == (5) - (2 * 5) == 5 - 10 => 5+1 => 6
+		//3 * 5 = 15 == (5) - (3 * 5) == 5 - 15 => 10 + 1 => 11
+		//4 * 5 = 20 == (5) - (4 * 5) == 5 - 20 => 15 + 1 => 16
+		//
+		int startCountSu = ((start * perCount)+1) - perCount;
+		int maxCountSu = (start * perCount);
+		
 		List<UserInfoAdminDTO> returnList = new ArrayList<UserInfoAdminDTO>();
-		int su = 0;
+		int su = 1;
 		for(UserInfoAdminDTO var : list) {
 			logger.info("[1] su : "+su+", start : "+start+", perCount : "+perCount);
-			if(su < start) {
+			if(su < startCountSu) {
 				su++;
 				continue;
 			}
-			if (perCount <= su) {
+			if (maxCountSu < su) {
 				break;
 			}
 			returnList.add(var);
