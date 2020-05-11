@@ -12,7 +12,7 @@ public class PagingUtil {
     private int endPage;  //끝 페이지 번호
     private boolean prev;  //이전 페이지 표시여부
     private boolean next;  //다음 페이지 표시여부
-    private int displayPageNum = 5;//View페이지에서 보여지는 번호 버튼의 숫자 
+    private int displayPageNum = 2;//View페이지에서 보여지는 번호 버튼의 숫자 
     private PagingDTO dto;  //현재페이지와 , 한페이지의 최대 게시글 수를 저장한 클래스
 	 
     private void calcData(){//계산데이터 4개를 만드는 메소드

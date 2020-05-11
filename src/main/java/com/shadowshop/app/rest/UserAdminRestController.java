@@ -38,6 +38,8 @@ public class UserAdminRestController {
 		List<UserInfoAdminDTO> list = userAdminService.getUsers(dto);
 		PagingUtil pu = new PagingUtil();
 		pu.setDto(dto);
+		//pu.setStartPage(dto.getCurrentPage());
+		//pu.setEndPage(dto);
 		pu.setTotalCount(15);
 		model.addAttribute("paging", pu);
 		logger.info(pu.toString());

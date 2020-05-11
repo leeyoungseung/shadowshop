@@ -94,8 +94,7 @@ $(document).ready(function() {
     var printPaging = function (pu, target){
     	var pagingStr = "";
     	if (pu.prev) {
-    		pagingStr += "<li style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>"
-    		+ "<a href='javascript:void(0)' onclick='getList(\''/userAdminRest/list/"+(pu.startPage - 1) +"'\')'>&laquo; prev</a></li>";
+    		pagingStr += "<li id='pagePrev' value='"+(pu.startPage - 1)+"' style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>&laquo; prev</li>";
     	}
     	
     	for (var i = pu.startPage, len = pu.endPage; i <= len; i++) {
@@ -105,8 +104,7 @@ $(document).ready(function() {
     	
     	
     	if (pu.next){
-    		pagingStr += "<li style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>"
-        	+ "<a href='javascript:void(0)' onclick='getList(\''/userAdminRest/list/"+(pu.endPage - 1) +"'\')'>end &raquo;</a></li>";
+    		pagingStr += "<li id='pageNext' value='"+(pu.endPage + 1)+"' style='margin:0 0 0 0;padding:0 0 0 0;border:0;float:left;'>next &raquo;</li>";
     	}
     	
     	target.html(pagingStr);
@@ -128,6 +126,22 @@ $(document).ready(function() {
     
     $(document).on("click",".pageNum", function(){
     	var num = $(this).text();
+    	num *=1;
+    	param="?currentPage=";
+    	param += num;
+    	getList(param);
+    });
+    
+    $(document).on("click","#pagePrev", function(){
+    	var num = $(this).val();
+    	num *=1;
+    	param="?currentPage=";
+    	param += num;
+    	getList(param);
+    });
+    
+    $(document).on("click","#pageNext", function(){
+    	var num = $(this).val();
     	num *=1;
     	param="?currentPage=";
     	param += num;
