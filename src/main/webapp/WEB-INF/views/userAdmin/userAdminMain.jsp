@@ -64,7 +64,7 @@
 {{#each .}}
         <tr class="searchedList">
             <td>{{userNo}}</td>
-            <td><a href="">{{userWebId}}</a></td>
+            <td><a href="/userAdmin/info/{{userNo}}">{{userWebId}}</a></td>
             <td>{{userName}}</td>
             <td>{{userNickName}}</td>
             <td>{{prettifyDate userJoinedDate}}</td>

@@ -26,11 +26,11 @@ public class UserAdminController {
 		return "/userAdmin/userAdminMain";
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
 	public String getUserInfoOne() {
+		logger.info("Welcome to getUserInfoOne Page");
 		
-		
-		return "";
+		return "/userAdmin/userAdminRead";
 	}
 	
 	
