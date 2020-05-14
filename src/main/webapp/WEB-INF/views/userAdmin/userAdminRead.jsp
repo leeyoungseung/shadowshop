@@ -1,21 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../adminTop.jsp"  %>
+	pageEncoding="UTF-8"%>
+<%@ include file="../adminTop.jsp"%>
 <div class="container">
-    <h2>Inline form</h2>
-    <p>Make the viewport larger than 576px wide to see that all of the form elements are inline and left-aligned. On small screens, the form groups will stack horizontally.</p>
-    <form class="form-inline" action="/action_page.php">
-        <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
-        <div class="form-check">
-        <label class="form-check-label">
-        <input class="form-check-input" type="checkbox" name="remember"> Remember me
-        </label>
-        </div>
-        <button type="submit" class="btn btn-primary">수정하기</button>
-     </form>
+	<h2>Inline form</h2>
+	<form class="form-inline">
+		<div>
+			<label for="email">Email : </label> 
+			<input type="email" value="${user.userWebId}" readonly="readonly">
+		</div>
+		<div>
+			<label for="">회원명 :</label> 
+			<input type="text" value="${user.userName}" readonly="readonly">
+		</div>
+		<div>
+			<label for="">연락처 1 : </label> 
+			<input type="text" value="" readonly="readonly"> 
+			<label>국가 : </label> 
+			<input type="text" value="" readonly="readonly">
+		</div>
+		<div>
+			<label for="">주소 : </label> 
+			<input type="text" value="" readonly="readonly">
+		</div>
+		<div>
+			<label for="">성별 : </label> 
+			<input type="text" value="" readonly="readonly">
+		</div>
+		<div>
+			<label for="">생년월일 : </label> 
+			<input type="text" value="" readonly="readonly">
+		</div>
+		<div>
+			<label for="">닉네임 : </label> 
+			<input type="text" value="${user.userNickName }" readonly="readonly">
+		</div>
+	</form>
 </div>
 </body>
 </html>

@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.shadowshop.app.dto.UserInfoAdminDTO;
 import com.shadowshop.app.user.service.UserAdminService;
 
 @Controller
@@ -27,8 +29,10 @@ public class UserAdminController {
 	}
 	
 	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-	public String getUserInfoOne() {
+	public String getUserInfoOne(@PathVariable("id") int id,Model model) {
 		logger.info("Welcome to getUserInfoOne Page");
+		UserInfoAdminDTO user = userAdminService.getUser(id);
+		model.addAttribute("user", user);
 		
 		return "/userAdmin/userAdminRead";
 	}

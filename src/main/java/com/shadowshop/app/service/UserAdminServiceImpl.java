@@ -16,10 +16,11 @@ import com.shadowshop.app.user.service.UserAdminService;
 public class UserAdminServiceImpl implements UserAdminService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserAdminServiceImpl.class);
-
-	@Override
-	public List<UserInfoAdminDTO> getUsers(PagingDTO dto) {
-		List<UserInfoAdminDTO> list = new ArrayList<UserInfoAdminDTO>();
+	
+	List<UserInfoAdminDTO> list = null;
+	
+	public UserAdminServiceImpl() {
+		list = new ArrayList<UserInfoAdminDTO>();
 		list.add(new UserInfoAdminDTO(1,"lee-y1@gmail.com","lee-y1","david1",new Date(),new Date(),"normal"));
 		list.add(new UserInfoAdminDTO(2,"lee-y2@gmail.com","lee-y2","david2",new Date(),new Date(),"block"));
 		list.add(new UserInfoAdminDTO(3,"lee-y3@gmail.com","lee-y3","david3",new Date(),new Date(),"special"));
@@ -35,6 +36,11 @@ public class UserAdminServiceImpl implements UserAdminService {
 		list.add(new UserInfoAdminDTO(13,"lee-y13@gmail.com","lee-y13","david13",new Date(),new Date(),"special"));
 		list.add(new UserInfoAdminDTO(14,"lee-y14@gmail.com","lee-y14","david14",new Date(),new Date(),"removed"));
 		list.add(new UserInfoAdminDTO(15,"lee-y15@gmail.com","lee-y15","david15",new Date(),new Date(),"normal"));
+	}
+
+	@Override
+	public List<UserInfoAdminDTO> getUsers(PagingDTO dto) {
+
 		
 		int start = dto.getPageStart();
 		int perCount = dto.getPerPageCount(); //5개 까지 출력
@@ -60,9 +66,16 @@ public class UserAdminServiceImpl implements UserAdminService {
 	}
 
 	@Override
-	public UserInfoAdminDTO getUser() {
-		// TODO Auto-generated method stub
-		return null;
+	public UserInfoAdminDTO getUser(int id) {
+		UserInfoAdminDTO dto = null; 
+		for (UserInfoAdminDTO var : list) {
+			if (var.getUserNo() == id) {
+				dto = var;
+				break;
+			}
+		}
+		
+		return dto;
 	}
 
 	

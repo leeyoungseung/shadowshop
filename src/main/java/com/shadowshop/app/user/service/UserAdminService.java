@@ -8,6 +8,6 @@ import com.shadowshop.app.dto.UserInfoAdminDTO;
 public interface UserAdminService {
 
 	List<UserInfoAdminDTO> getUsers(PagingDTO dto);
-	UserInfoAdminDTO getUser();
+	UserInfoAdminDTO getUser(int id);
 	
 }
