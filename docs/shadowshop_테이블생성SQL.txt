@@ -1,0 +1,894 @@
+﻿-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- CATEGORY Table Create SQL
+CREATE TABLE CATEGORY
+(
+    no                    INT              NOT NULL, 
+    category_no           NVARCHAR2(20)    NOT NULL, 
+    parent_category_no    NVARCHAR2(20)    NOT NULL, 
+    category_name         NVARCHAR2(20)    NOT NULL, 
+    category_contents     NVARCHAR2(20)    NULL, 
+    category_discount     INT              NULL, 
+    category_status       INT              NOT NULL, 
+    createdDate           DATE             NOT NULL, 
+    updatedDate           DATE             NOT NULL, 
+    CONSTRAINT CATEGORY_PK PRIMARY KEY (no, category_no)
+)
+/
+
+CREATE SEQUENCE CATEGORY_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER CATEGORY_AI_TRG
+BEFORE INSERT ON CATEGORY 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT CATEGORY_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER CATEGORY_AI_TRG;
+/
+
+--DROP SEQUENCE CATEGORY_SEQ;
+/
+
+COMMENT ON TABLE CATEGORY IS '카테고리 테이블'
+/
+
+COMMENT ON COLUMN CATEGORY.no IS '번호'
+/
+
+COMMENT ON COLUMN CATEGORY.category_no IS '카테고리번호'
+/
+
+COMMENT ON COLUMN CATEGORY.parent_category_no IS '상위카테고리번호'
+/
+
+COMMENT ON COLUMN CATEGORY.category_name IS '카테고리명'
+/
+
+COMMENT ON COLUMN CATEGORY.category_contents IS '카테고리설명'
+/
+
+COMMENT ON COLUMN CATEGORY.category_discount IS '카테고리할인률'
+/
+
+COMMENT ON COLUMN CATEGORY.category_status IS '0:비표시,1:표시'
+/
+
+COMMENT ON COLUMN CATEGORY.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN CATEGORY.updatedDate IS '레코드갱신일'
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE USER
+(
+    no               INT                          NOT NULL, 
+    id               NVARCHAR2(20)                NOT NULL, 
+    password         NVARCHAR2(20)                NOT NULL, 
+    name             NVARCHAR2(20)VARCHAR2(20)    NOT NULL, 
+    cpNumber         NVARCHAR2(20)                NOT NULL, 
+    phoneNumber      NVARCHAR2(20)                NOT NULL, 
+    country          NVARCHAR2(20)                NOT NULL, 
+    postal_code      NVARCHAR2(20)                NOT NULL, 
+    address_1        NVARCHAR2(20)                NOT NULL, 
+    address_2        NVARCHAR2(20)                NOT NULL, 
+    address_3        NVARCHAR2(20)                NOT NULL, 
+    address_4        NVARCHAR2(20)                NULL, 
+    sex              INT                          NOT NULL, 
+    birthday         DATE                         NOT NULL, 
+    nickname         NVARCHAR2(20)                NULL, 
+    joinedDate       DATE                         NOT NULL, 
+    lastLoginDate    DATE                         NOT NULL, 
+    userStatus       INT                          NOT NULL, 
+    createdDate      DATE                         NOT NULL, 
+    updatedDate      DATE                         NOT NULL, 
+    CONSTRAINT USER_PK PRIMARY KEY (no, id)
+)
+/
+
+CREATE SEQUENCE USER_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER USER_AI_TRG
+BEFORE INSERT ON USER 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT USER_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER USER_AI_TRG;
+/
+
+--DROP SEQUENCE USER_SEQ;
+/
+
+COMMENT ON TABLE USER IS '유저테이블'
+/
+
+COMMENT ON COLUMN USER.no IS '번호'
+/
+
+COMMENT ON COLUMN USER.id IS '아이디'
+/
+
+COMMENT ON COLUMN USER.password IS '패스워드'
+/
+
+COMMENT ON COLUMN USER.name IS '이름'
+/
+
+COMMENT ON COLUMN USER.cpNumber IS '핸드폰번호'
+/
+
+COMMENT ON COLUMN USER.phoneNumber IS '전화번호'
+/
+
+COMMENT ON COLUMN USER.country IS '국가'
+/
+
+COMMENT ON COLUMN USER.postal_code IS '우편번호'
+/
+
+COMMENT ON COLUMN USER.address_1 IS '주소1'
+/
+
+COMMENT ON COLUMN USER.address_2 IS '주소2'
+/
+
+COMMENT ON COLUMN USER.address_3 IS '주소3'
+/
+
+COMMENT ON COLUMN USER.address_4 IS '주소4'
+/
+
+COMMENT ON COLUMN USER.sex IS '성별'
+/
+
+COMMENT ON COLUMN USER.birthday IS '생일'
+/
+
+COMMENT ON COLUMN USER.nickname IS '닉네임'
+/
+
+COMMENT ON COLUMN USER.joinedDate IS '가입날자'
+/
+
+COMMENT ON COLUMN USER.lastLoginDate IS '마지막로그인날자'
+/
+
+COMMENT ON COLUMN USER.userStatus IS '0:정상유저,1:VIP유저,2:탈퇴유저,3:블럭유저'
+/
+
+COMMENT ON COLUMN USER.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN USER.updatedDate IS '레코드갱신일'
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE ITEM_HEADER
+(
+    no                  INT              NOT NULL, 
+    item_no             NVARCHAR2(20)    NOT NULL, 
+    item_name           NVARCHAR2(20)    NOT NULL, 
+    item_contents       NVARCHAR2(20)    NULL, 
+    maker_name          NVARCHAR2(20)    NOT NULL, 
+    maker_code          NVARCHAR2(20)    NOT NULL, 
+    event_flg           INT              NOT NULL, 
+    event_code          NVARCHAR2(20)    NULL, 
+    sale_flg            INT              NOT NULL, 
+    item_price          INT              NOT NULL, 
+    item_order_price    INT              NOT NULL, 
+    category_no         NVARCHAR2(20)    NOT NULL, 
+    createdDate         DATE             NOT NULL, 
+    updatedDate         DATE             NOT NULL, 
+    CONSTRAINT ITEM_HEADER_PK PRIMARY KEY (no, item_no)
+)
+/
+
+CREATE SEQUENCE ITEM_HEADER_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER ITEM_HEADER_AI_TRG
+BEFORE INSERT ON ITEM_HEADER 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT ITEM_HEADER_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER ITEM_HEADER_AI_TRG;
+/
+
+--DROP SEQUENCE ITEM_HEADER_SEQ;
+/
+
+COMMENT ON TABLE ITEM_HEADER IS '상품 테이블'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.no IS '번호'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.item_no IS '상품번호'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.item_name IS '상품명'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.item_contents IS '상품설명'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.maker_name IS '메이커명'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.maker_code IS '메이커코드'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.event_flg IS '0:비활성,1:활성'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.event_code IS '이벤트코드'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.sale_flg IS '0:비판매,1:판매'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.item_price IS '상품가격(판매가)'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.item_order_price IS '상품가격(도매가)'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.category_no IS '카테고리번호'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN ITEM_HEADER.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE ITEM_HEADER
+    ADD CONSTRAINT FK_ITEM_HEADER_category_no_CAT FOREIGN KEY (category_no)
+        REFERENCES CATEGORY (category_no)
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE ITEM_DETAIL
+(
+    no                         INT              NOT NULL, 
+    item_detail_no             NVARCHAR2(20)    NOT NULL, 
+    item_no                    NVARCHAR2(20)    NOT NULL, 
+    item_detail_name           NVARCHAR2(20)    NOT NULL, 
+    item_detail_contents       NVARCHAR2(20)    NULL, 
+    item_detail_price          INT              NOT NULL, 
+    item_detail_order_price    INT              NOT NULL, 
+    sale_flg                   INT              NOT NULL, 
+    discount_price             INT              NOT NULL, 
+    createdDate                DATE             NOT NULL, 
+    updatedDate                DATE             NOT NULL, 
+    CONSTRAINT ITEM_DETAIL_PK PRIMARY KEY (no, item_detail_no)
+)
+/
+
+CREATE SEQUENCE ITEM_DETAIL_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER ITEM_DETAIL_AI_TRG
+BEFORE INSERT ON ITEM_DETAIL 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT ITEM_DETAIL_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER ITEM_DETAIL_AI_TRG;
+/
+
+--DROP SEQUENCE ITEM_DETAIL_SEQ;
+/
+
+COMMENT ON TABLE ITEM_DETAIL IS '상품상세 테이블'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.no IS '번호'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.item_detail_no IS '상품상세번호'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.item_no IS '상품번호'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.item_detail_name IS '상품상세명'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.item_detail_contents IS '상품상세설명'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.item_detail_price IS '상품상세가격(판매가)'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.item_detail_order_price IS '상품상세가격(도매가)'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.sale_flg IS '0:비판매,1:판매'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.discount_price IS '가격할인금액'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN ITEM_DETAIL.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE ITEM_DETAIL
+    ADD CONSTRAINT FK_ITEM_DETAIL_item_no_ITEM_HE FOREIGN KEY (item_no)
+        REFERENCES ITEM_HEADER (item_no)
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE ORDER_HEADER
+(
+    no                        INT              NOT NULL, 
+    order_no                  NVARCHAR2(20)    NOT NULL, 
+    order_date                DATE             NOT NULL, 
+    id                        NVARCHAR2(20)    NOT NULL, 
+    name                      NVARCHAR2(20)    NOT NULL, 
+    recipient_name            NVARCHAR2(20)    NOT NULL, 
+    email                     NVARCHAR2(20)    NOT NULL, 
+    postal_code               NVARCHAR2(20)    NOT NULL, 
+    address_1                 NVARCHAR2(20)    NOT NULL, 
+    address_2                 NVARCHAR2(20)    NOT NULL, 
+    address_3                 NVARCHAR2(20)    NOT NULL, 
+    address_4                 NVARCHAR2(20)    NOT NULL, 
+    phoneNumber_1             NVARCHAR2(20)    NOT NULL, 
+    phoneNumber_2             NVARCHAR2(20)    NULL, 
+    payment_method_code       INT              NOT NULL, 
+    payment_commission        INT              NULL, 
+    payment_commission_tax    INT              NULL, 
+    payment_complete_date     DATE             NOT NULL, 
+    payment_limit_date        DATE             NULL, 
+    payment_status            INT              NOT NULL, 
+    order_status              INT              NOT NULL, 
+    cancel_date               DATE             NOT NULL, 
+    last_update_date          DATE             NOT NULL, 
+    createdDate               DATE             NULL, 
+    updatedDate               DATE             NULL, 
+    CONSTRAINT ORDER_HEADER_PK PRIMARY KEY (no, order_no)
+)
+/
+
+CREATE SEQUENCE ORDER_HEADER_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER ORDER_HEADER_AI_TRG
+BEFORE INSERT ON ORDER_HEADER 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT ORDER_HEADER_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER ORDER_HEADER_AI_TRG;
+/
+
+--DROP SEQUENCE ORDER_HEADER_SEQ;
+/
+
+COMMENT ON TABLE ORDER_HEADER IS '주문'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.no IS '번호'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.order_no IS '주문번호'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.order_date IS '주문일'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.id IS '주문자ID'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.name IS '주문자명'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.recipient_name IS '받는사람명'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.email IS '이메일'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.postal_code IS '우편번호'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.address_1 IS '주소1'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.address_2 IS '주소2'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.address_3 IS '주소3'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.address_4 IS '주소4'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.phoneNumber_1 IS '연락처1'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.phoneNumber_2 IS '연락처2'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.payment_method_code IS '결제방법코드'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.payment_commission IS '결제수수료'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.payment_commission_tax IS '결제수수료세율'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.payment_complete_date IS '결제완료일'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.payment_limit_date IS '결제완료제한일'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.payment_status IS '0:미결제,1:결제완료'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.order_status IS '0:가주문,1:정상주문,2:주문취소,3:주문강제취소'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.cancel_date IS '주문취소일'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.last_update_date IS '주문수정일(가장최신)'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN ORDER_HEADER.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE ORDER_HEADER
+    ADD CONSTRAINT FK_ORDER_HEADER_id_USER_id FOREIGN KEY (id)
+        REFERENCES USER (id)
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE SHIPPING_HEADER
+(
+    no                         INT              NOT NULL, 
+    shipping_no                NVARCHAR2(20)    NOT NULL, 
+    order_no                   NVARCHAR2(20)    NOT NULL, 
+    id                         NVARCHAR2(20)    NOT NULL, 
+    recipient_name             NVARCHAR2(20)    NOT NULL, 
+    email                      NVARCHAR2(20)    NOT NULL, 
+    postal_code                NVARCHAR2(20)    NOT NULL, 
+    address_1                  NVARCHAR2(20)    NOT NULL, 
+    address_2                  NVARCHAR2(20)    NOT NULL, 
+    address_3                  NVARCHAR2(20)    NOT NULL, 
+    address_4                  NVARCHAR2(20)    NOT NULL, 
+    phoneNumber_1              NVARCHAR2(20)    NOT NULL, 
+    phoneNumber_2              NVARCHAR2(20)    NULL, 
+    delivery_company_name      NVARCHAR2(20)    NOT NULL, 
+    delivery_appointed_date    NVARCHAR2(20)    NOT NULL, 
+    delivery_requested_msg     NVARCHAR2(20)    NOT NULL, 
+    shipping_charge            INT              NULL, 
+    shipping_status            INT              NULL, 
+    shipping_start_date        DATE             NULL, 
+    shipping_arrival_date      DATE             NULL, 
+    return_date                DATE             NULL, 
+    return_reason_type         INT              NULL, 
+    return_reason_contents     NVARCHAR2(20)    NULL, 
+    createdDate                DATE             NOT NULL, 
+    updatedDate                DATE             NOT NULL, 
+    CONSTRAINT SHIPPING_HEADER_PK PRIMARY KEY (no, shipping_no)
+)
+/
+
+CREATE SEQUENCE SHIPPING_HEADER_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER SHIPPING_HEADER_AI_TRG
+BEFORE INSERT ON SHIPPING_HEADER 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT SHIPPING_HEADER_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER SHIPPING_HEADER_AI_TRG;
+/
+
+--DROP SEQUENCE SHIPPING_HEADER_SEQ;
+/
+
+COMMENT ON TABLE SHIPPING_HEADER IS '송장테이블 주문 테이블과 1:N관계'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.no IS '번호'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.shipping_no IS '송장번호'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.order_no IS '주문번호'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.id IS '주문자ID'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.recipient_name IS '받는사람명'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.email IS '이메일(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.postal_code IS '우편번호(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.address_1 IS '주소1(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.address_2 IS '주소2(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.address_3 IS '주소3(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.address_4 IS '주소4(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.phoneNumber_1 IS '연락처1(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.phoneNumber_2 IS '연락처2(받는사람)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.delivery_company_name IS '택배배송회사명'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.delivery_appointed_date IS '배송지정요청일'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.delivery_requested_msg IS '배송시요청메시지'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.shipping_charge IS '배송료'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.shipping_status IS '0:주문완료시,1:출하준비,2:출하완료,3:착하완료,4:주문취소'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.shipping_start_date IS '출하일'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.shipping_arrival_date IS '착하일(배송완료일)'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.return_date IS '반품일'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.return_reason_type IS '0:단순변심,1:상품문제'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.return_reason_contents IS '반품사유 상세'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN SHIPPING_HEADER.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE SHIPPING_HEADER
+    ADD CONSTRAINT FK_SHIPPING_HEADER_order_no_OR FOREIGN KEY (order_no)
+        REFERENCES ORDER_HEADER (order_no)
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE STOCK
+(
+    no                       INT              NOT NULL, 
+    item_detail_no           NVARCHAR2(20)    NOT NULL, 
+    stock_quantity           INT              NULL, 
+    active_stock_quantity    INT              NULL, 
+    createdDate              DATE             NULL, 
+    updatedDate              DATE             NULL, 
+    CONSTRAINT STOCK_PK PRIMARY KEY (no, item_detail_no)
+)
+/
+
+CREATE SEQUENCE STOCK_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER STOCK_AI_TRG
+BEFORE INSERT ON STOCK 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT STOCK_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER STOCK_AI_TRG;
+/
+
+--DROP SEQUENCE STOCK_SEQ;
+/
+
+COMMENT ON TABLE STOCK IS '재고 테이블'
+/
+
+COMMENT ON COLUMN STOCK.no IS '번호'
+/
+
+COMMENT ON COLUMN STOCK.item_detail_no IS '상품상세번호'
+/
+
+COMMENT ON COLUMN STOCK.stock_quantity IS '재고수량'
+/
+
+COMMENT ON COLUMN STOCK.active_stock_quantity IS '판매활성수량'
+/
+
+COMMENT ON COLUMN STOCK.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN STOCK.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE STOCK
+    ADD CONSTRAINT FK_STOCK_item_detail_no_ITEM_D FOREIGN KEY (item_detail_no)
+        REFERENCES ITEM_DETAIL (item_detail_no)
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE ORDER_DETAIL
+(
+    no                   INT              NOT NULL, 
+    order_detail_no      NVARCHAR2(20)    NOT NULL, 
+    order_no             NVARCHAR2(20)    NOT NULL, 
+    maker_code           NVARCHAR2(20)    NOT NULL, 
+    item_detail_no       NVARCHAR2(20)    NOT NULL, 
+    item_detail_name     NVARCHAR2(20)    NOT NULL, 
+    order_quantity       INT              NOT NULL, 
+    order_price          INT              NOT NULL, 
+    basic_order_price    INT              NOT NULL, 
+    order_tax_rate       INT              NOT NULL, 
+    createdDate          DATE             NOT NULL, 
+    updatedDate          DATE             NOT NULL, 
+    CONSTRAINT ORDER_DETAIL_PK PRIMARY KEY (no, order_detail_no)
+)
+/
+
+CREATE SEQUENCE ORDER_DETAIL_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER ORDER_DETAIL_AI_TRG
+BEFORE INSERT ON ORDER_DETAIL 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT ORDER_DETAIL_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER ORDER_DETAIL_AI_TRG;
+/
+
+--DROP SEQUENCE ORDER_DETAIL_SEQ;
+/
+
+COMMENT ON TABLE ORDER_DETAIL IS '주문 테이블과 1:N 관계, 상품상세종류별로 1개의 레코드가 생성됨'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.no IS '번호'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.order_detail_no IS '주문상세번호'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.order_no IS '주문번호'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.maker_code IS '메이커코드'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.item_detail_no IS '상품상세번호'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.item_detail_name IS '상품명'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.order_quantity IS '상품구입수량'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.order_price IS '주문금액'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.basic_order_price IS '할인등이 적용되지 않았을때의 가격'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.order_tax_rate IS '세율'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN ORDER_DETAIL.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE ORDER_DETAIL
+    ADD CONSTRAINT FK_ORDER_DETAIL_order_detail_n FOREIGN KEY (order_detail_no)
+        REFERENCES ORDER_HEADER (order_no)
+/
+
+
+-- CATEGORY Table Create SQL
+CREATE TABLE SHIPPING_DETAIL
+(
+    no                      INT              NOT NULL, 
+    shipping_detail_no      NVARCHAR2(20)    NOT NULL, 
+    shipping_no             NVARCHAR2(20)    NOT NULL, 
+    basic_order_price       INT              NOT NULL, 
+    order_price             INT              NOT NULL, 
+    order_tax_rate          INT              NOT NULL, 
+    item_detail_no          NVARCHAR2(20)    NOT NULL, 
+    item_name               NVARCHAR2(40)    NOT NULL, 
+    shipping_status         INT              NOT NULL, 
+    order_link_status       INT              NOT NULL, 
+    shipping_link_status    INT              NOT NULL, 
+    arrival_link_status     INT              NOT NULL, 
+    order_link_date         DATE             NOT NULL, 
+    shipping_link_date      DATE             NOT NULL, 
+    arrival_link_date       DATE             NOT NULL, 
+    cancel_date             DATE             NULL, 
+    return_date             DATE             NULL, 
+    createdDate             DATE             NOT NULL, 
+    updatedDate             DATE             NOT NULL, 
+    CONSTRAINT SHIPPING_DETAIL_PK PRIMARY KEY (no, shipping_detail_no)
+)
+/
+
+CREATE SEQUENCE SHIPPING_DETAIL_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER SHIPPING_DETAIL_AI_TRG
+BEFORE INSERT ON SHIPPING_DETAIL 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT SHIPPING_DETAIL_SEQ.NEXTVAL
+    INTO :NEW.no
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER SHIPPING_DETAIL_AI_TRG;
+/
+
+--DROP SEQUENCE SHIPPING_DETAIL_SEQ;
+/
+
+COMMENT ON TABLE SHIPPING_DETAIL IS '송장상세 주문한 상품의 수량 만큼 레코드 생성; (주문1:송장N::송장상세N); (송장1:송장상세N)'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.no IS '번호'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.shipping_detail_no IS '송장상세번호'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.shipping_no IS '송장번호'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.basic_order_price IS '단가금액'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.order_price IS '주문금액'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.order_tax_rate IS '세율'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.item_detail_no IS '상품상세번호'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.item_name IS '상품명 + 상품상세명'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.shipping_status IS '0:주문완료,1:출하준비중,2:출하완료,3:착하완료,4:강제캔슬,5:반품'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.order_link_status IS '0:미연계,1:연계완료,2:연계실패'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.shipping_link_status IS '0:미연계,1:연계완료,2:연계실패'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.arrival_link_status IS '0:미연계,1:연계완료,2:연계실패'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.order_link_date IS '주문연계일'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.shipping_link_date IS '출하연계일'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.arrival_link_date IS '착하연계일'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.cancel_date IS '주문취소일'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.return_date IS '반품일'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.createdDate IS '레코드생성일'
+/
+
+COMMENT ON COLUMN SHIPPING_DETAIL.updatedDate IS '레코드갱신일'
+/
+
+ALTER TABLE SHIPPING_DETAIL
+    ADD CONSTRAINT FK_SHIPPING_DETAIL_shipping_no FOREIGN KEY (shipping_no)
+        REFERENCES SHIPPING_HEADER (shipping_no)
+/
+
+ALTER TABLE SHIPPING_DETAIL
+    ADD CONSTRAINT FK_SHIPPING_DETAIL_item_detail FOREIGN KEY (item_detail_no)
+        REFERENCES ITEM_DETAIL (item_detail_no)
+/
+
+

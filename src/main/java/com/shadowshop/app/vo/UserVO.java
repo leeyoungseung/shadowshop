@@ -2,139 +2,261 @@ package com.shadowshop.app.vo;
 
 import java.util.Date;
 
+// 유저테이블 
+public class UserVO {
 
-public class UserVO extends BaseVO{
+	// 번호
+	private Integer no;
 
-
+	// 아이디
 	private String id;
+
+	// 패스워드
 	private String password;
+
+	// 이름
 	private String name;
-	private String cpNumber;
-	private String phoneNumber;
+
+	// 핸드폰번호
+	private String cpnumber;
+
+	// 전화번호
+	private String phonenumber;
+
+	// 국가
 	private String country;
-	private String postal_code;
-	private String address_1;
-	private String address_2;
-	private String address_3;
-	private String address_4;
-    private String sex;
-    private String birthday;
+
+	// 우편번호
+	private String postalCode;
+
+	// 주소1
+	private String address1;
+
+	// 주소2
+	private String address2;
+
+	// 주소3
+	private String address3;
+
+	// 주소4
+	private String address4;
+
+	// 성별
+	private Integer sex;
+
+	// 생일
+	private Date birthday;
+
+	// 닉네임
 	private String nickname;
-	private Date joinedDate;
-	private Date lastLoginDate;
-	private String userStatus;
+
+	// 가입날자
+	private Date joineddate;
+
+	// 마지막로그인날자
+	private Date lastlogindate;
+
+	// 유저상태 0:정상유저,1:VIP유저,2:탈퇴유저,3:블럭유저
+	private Integer userstatus;
+
+	// 레코드생성일
+	private Date createddate;
+
+	// 레코드갱신일
+	private Date updateddate;
+
+	public Integer getNo() {
+		return no;
+	}
+
+	public void setNo(Integer no) {
+		this.no = no;
+	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getCpNumber() {
-		return cpNumber;
+
+	public String getCpnumber() {
+		return cpnumber;
 	}
-	public void setCpNumber(String cpNumber) {
-		this.cpNumber = cpNumber;
+
+	public void setCpnumber(String cpnumber) {
+		this.cpnumber = cpnumber;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+
+	public String getPhonenumber() {
+		return phonenumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	public String getPostal_code() {
-		return postal_code;
+
+	public String getPostalCode() {
+		return postalCode;
 	}
-	public void setPostal_code(String postal_code) {
-		this.postal_code = postal_code;
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
-	public String getAddress_1() {
-		return address_1;
+
+	public String getAddress1() {
+		return address1;
 	}
-	public void setAddress_1(String address_1) {
-		this.address_1 = address_1;
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
-	public String getAddress_2() {
-		return address_2;
+
+	public String getAddress2() {
+		return address2;
 	}
-	public void setAddress_2(String address_2) {
-		this.address_2 = address_2;
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
 	}
-	public String getAddress_3() {
-		return address_3;
+
+	public String getAddress3() {
+		return address3;
 	}
-	public void setAddress_3(String address_3) {
-		this.address_3 = address_3;
+
+	public void setAddress3(String address3) {
+		this.address3 = address3;
 	}
-	public String getAddress_4() {
-		return address_4;
+
+	public String getAddress4() {
+		return address4;
 	}
-	public void setAddress_4(String address_4) {
-		this.address_4 = address_4;
+
+	public void setAddress4(String address4) {
+		this.address4 = address4;
 	}
-	public String getSex() {
+
+	public Integer getSex() {
 		return sex;
 	}
-	public void setSex(String sex) {
+
+	public void setSex(Integer sex) {
 		this.sex = sex;
 	}
-	public String getBirthday() {
+
+	public Date getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(String birthday) {
+
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
+
 	public String getNickname() {
 		return nickname;
 	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public Date getJoinedDate() {
-		return joinedDate;
-	}
-	public void setJoinedDate(Date joinedDate) {
-		this.joinedDate = joinedDate;
-	}
-	public Date getLastLoginDate() {
-		return lastLoginDate;
-	}
-	public void setLastLoginDate(Date lastLoginDate) {
-		this.lastLoginDate = lastLoginDate;
-	}
-	public String getUserStatus() {
-		return userStatus;
-	}
-	public void setUserStatus(String userStatus) {
-		this.userStatus = userStatus;
-	}
-	@Override
-	public String toString() {
-		return "UserVO [id=" + id + ", password=" + password + ", name=" + name + ", cpNumber=" + cpNumber
-				+ ", phoneNumber=" + phoneNumber + ", country=" + country + ", postal_code=" + postal_code
-				+ ", address_1=" + address_1 + ", address_2=" + address_2 + ", address_3=" + address_3 + ", address_4="
-				+ address_4 + ", sex=" + sex + ", birthday=" + birthday + ", nickname=" + nickname + ", joinedDate="
-				+ joinedDate + ", lastLoginDate=" + lastLoginDate + ", userStatus=" + userStatus + ", no=" + no
-				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + "]";
+
+	public Date getJoineddate() {
+		return joineddate;
 	}
 
-	
+	public void setJoineddate(Date joineddate) {
+		this.joineddate = joineddate;
+	}
+
+	public Date getLastlogindate() {
+		return lastlogindate;
+	}
+
+	public void setLastlogindate(Date lastlogindate) {
+		this.lastlogindate = lastlogindate;
+	}
+
+	public Integer getUserstatus() {
+		return userstatus;
+	}
+
+	public void setUserstatus(Integer userstatus) {
+		this.userstatus = userstatus;
+	}
+
+	public Date getCreateddate() {
+		return createddate;
+	}
+
+	public void setCreateddate(Date createddate) {
+		this.createddate = createddate;
+	}
+
+	public Date getUpdateddate() {
+		return updateddate;
+	}
+
+	public void setUpdateddate(Date updateddate) {
+		this.updateddate = updateddate;
+	}
+
+	// User 모델 복사
+	public void CopyData(UserVO param) {
+		this.no = param.getNo();
+		this.id = param.getId();
+		this.password = param.getPassword();
+		this.name = param.getName();
+		this.cpnumber = param.getCpnumber();
+		this.phonenumber = param.getPhonenumber();
+		this.country = param.getCountry();
+		this.postalCode = param.getPostalCode();
+		this.address1 = param.getAddress1();
+		this.address2 = param.getAddress2();
+		this.address3 = param.getAddress3();
+		this.address4 = param.getAddress4();
+		this.sex = param.getSex();
+		this.birthday = param.getBirthday();
+		this.nickname = param.getNickname();
+		this.joineddate = param.getJoineddate();
+		this.lastlogindate = param.getLastlogindate();
+		this.userstatus = param.getUserstatus();
+		this.createddate = param.getCreateddate();
+		this.updateddate = param.getUpdateddate();
+	}
+
+	@Override
+	public String toString() {
+		return "UserVO [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", cpnumber="
+				+ cpnumber + ", phonenumber=" + phonenumber + ", country=" + country + ", postalCode=" + postalCode
+				+ ", address1=" + address1 + ", address2=" + address2 + ", address3=" + address3 + ", address4="
+				+ address4 + ", sex=" + sex + ", birthday=" + birthday + ", nickname=" + nickname + ", joineddate="
+				+ joineddate + ", lastlogindate=" + lastlogindate + ", userstatus=" + userstatus + ", createddate="
+				+ createddate + ", updateddate=" + updateddate + "]";
+	}
 
 }
