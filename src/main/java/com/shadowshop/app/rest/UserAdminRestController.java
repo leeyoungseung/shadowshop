@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shadowshop.app.dto.PagingDTO;
 import com.shadowshop.app.dto.UserInfoAdminDTO;
 import com.shadowshop.app.dto.UserInfosAdminDTO;
-import com.shadowshop.app.user.service.UserAdminService;
+import com.shadowshop.app.service.UserService;
 import com.shadowshop.app.utils.PagingUtil;
 
 @RestController
@@ -26,7 +26,7 @@ public class UserAdminRestController {
 	private static final Logger logger = LoggerFactory.getLogger(UserAdminRestController.class);
 	
 	@Autowired
-	private UserAdminService userAdminService;
+	private UserService userService;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public UserInfosAdminDTO UserAdminList(@ModelAttribute("paging") PagingDTO dto,
@@ -35,7 +35,7 @@ public class UserAdminRestController {
 		logger.info(dto.toString());
 		UserInfosAdminDTO returnDto = new UserInfosAdminDTO();
 		
-		List<UserInfoAdminDTO> list = userAdminService.getUsers(dto);
+		List<UserInfoAdminDTO> list = userService.getUsers(dto);
 		PagingUtil pu = new PagingUtil();
 		pu.setDto(dto);
 		//pu.setStartPage(dto.getCurrentPage());

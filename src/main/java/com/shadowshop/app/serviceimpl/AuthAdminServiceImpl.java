@@ -1,4 +1,4 @@
-package com.shadowshop.app.service;
+package com.shadowshop.app.serviceimpl;
 
 import java.util.Date;
 

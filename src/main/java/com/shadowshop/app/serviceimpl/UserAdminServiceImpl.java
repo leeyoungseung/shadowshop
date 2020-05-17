@@ -1,4 +1,4 @@
-package com.shadowshop.app.service;
+package com.shadowshop.app.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 
 import com.shadowshop.app.dto.PagingDTO;
 import com.shadowshop.app.dto.UserInfoAdminDTO;
-import com.shadowshop.app.user.service.UserAdminService;
+import com.shadowshop.app.service.UserService;
+import com.shadowshop.app.vo.UserVO;
 
 @Service
-public class UserAdminServiceImpl implements UserAdminService {
+public class UserAdminServiceImpl implements UserService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserAdminServiceImpl.class);
 	
@@ -76,6 +77,18 @@ public class UserAdminServiceImpl implements UserAdminService {
 		}
 		
 		return dto;
+	}
+
+	@Override
+	public UserInfoAdminDTO createUser(UserVO userinfo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserInfoAdminDTO updateUser(UserInfoAdminDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
