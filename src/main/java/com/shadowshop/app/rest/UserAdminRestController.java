@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +29,14 @@ public class UserAdminRestController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 유저 목록
+	 * @param dto
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public UserInfosAdminDTO UserAdminList(@ModelAttribute("paging") PagingDTO dto,
+	public UserInfosAdminDTO userList(@ModelAttribute("paging") PagingDTO dto,
 			Model model) {
 		logger.info("Welcome to UserAdminList");
 		logger.info(dto.toString());
@@ -49,4 +56,31 @@ public class UserAdminRestController {
 		
 		return returnDto;
 	}
+	
+	/**
+	 * 유저 블럭 처리
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/block/{id}" , method = RequestMethod.PUT)
+	public UserInfoAdminDTO userBlock(@PathVariable("id") String id) {
+		
+		return null;
+	}
+	
+	/**
+	 * 유저 삭제
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/delete/{id}" , method = RequestMethod.DELETE)
+	public String deleteUserInfo(@PathVariable("id") int id,
+			Model model) {
+		
+		
+		return null;
+	}
+	
+	
 }
