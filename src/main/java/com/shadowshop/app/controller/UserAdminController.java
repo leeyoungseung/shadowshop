@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.shadowshop.app.dto.UserInfoAdminDTO;
-import com.shadowshop.app.dto.UserInfosAdminDTO;
 import com.shadowshop.app.service.UserService;
 
 @Controller
@@ -42,10 +41,10 @@ public class UserAdminController {
      * @param model
      * @return
      */
-	@RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-	public String getUserInfoOne(@PathVariable("id") int id,Model model) {
+	@RequestMapping(value = "/info/{userNo}", method = RequestMethod.GET)
+	public String getUserInfoOne(@PathVariable("userNo") int userNo,Model model) {
 		logger.info("Welcome to getUserInfoOne Page");
-		UserInfoAdminDTO user = userService.getUser(id);
+		UserInfoAdminDTO user = userService.getUser(userNo);
 		model.addAttribute("user", user);
 		
 		return "/userAdmin/userAdminRead";
@@ -57,10 +56,10 @@ public class UserAdminController {
      * @param model
      * @return
      */
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
-	public String updateUserInfo(@PathVariable("id") int id,Model model) {
-		logger.info("Welcome to getUserInfoOne Page");
-		UserInfoAdminDTO user = userService.getUser(id);
+	@RequestMapping(value = "/update/{userNo}", method = RequestMethod.GET)
+	public String updateUserInfo(@PathVariable("userNo") int userNo,Model model) {
+		logger.info("Welcome to updateUserInfo Page");
+		UserInfoAdminDTO user = userService.getUser(userNo);
 		model.addAttribute("user", user);
 		
 		return "/userAdmin/userAdminUpdate";
@@ -72,12 +71,14 @@ public class UserAdminController {
 	 * @param result
 	 * @return
 	 */
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-	public String updateUserInfo(@RequestAttribute UserInfosAdminDTO dto,
-			BindingResult result){
+	@RequestMapping(value = "/update/{userNo}", method = RequestMethod.POST)
+	public String updateUserInfo(UserInfoAdminDTO dto,
+			BindingResult result,Model model){
+		logger.info("Welcome to updateUserInfo POST");
+		logger.info(dto.toString());
 		
-		int id = 0;
-		return "forward:/userAdmin/update/"+id;
+		int userNo = 3;
+		return "redirect:/userAdmin/info/"+userNo;
 	}
 	
 

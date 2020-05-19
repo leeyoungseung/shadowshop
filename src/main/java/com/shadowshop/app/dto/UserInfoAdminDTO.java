@@ -13,6 +13,9 @@ public class UserInfoAdminDTO extends BaseDTO {
 	Date userLastLoginDate;
 	String userStatus;
 	
+	
+	public UserInfoAdminDTO() {};
+	
 	public UserInfoAdminDTO(int userNo, String userWebId, String userName, String userNickName, Date userJoinedDate,
 			Date userLastLoginDate, String userStatus) {
 		super();
@@ -67,12 +70,13 @@ public class UserInfoAdminDTO extends BaseDTO {
 	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
-
 	@Override
 	public String toString() {
 		return "UserInfoAdminDTO [userNo=" + userNo + ", userWebId=" + userWebId + ", userName=" + userName
 				+ ", userNickName=" + userNickName + ", userJoinedDate=" + userJoinedDate + ", userLastLoginDate="
 				+ userLastLoginDate + ", userStatus=" + userStatus + "]";
 	}
+	
+	
 	
 }

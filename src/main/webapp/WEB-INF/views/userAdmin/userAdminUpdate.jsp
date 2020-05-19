@@ -3,41 +3,41 @@
 <%@ include file="../adminTop.jsp"%>
 <div class="container">
 	<h2>Inline form</h2>
-	<form class="form-inline" action="">
+	<form:form commandName="user" class="form-inline" action="/userAdmin/update/${user.userNo}" method="POST">
 		<div>
 			<label for="email">Email : </label> 
-			<input type="email" value="${user.userWebId}" readonly="readonly">
+			<form:input type="email" value="${user.userWebId}" readonly="readonly" path="userWebId"/>
 		</div>
 		<div>
 			<label for="">회원명 :</label> 
-			<input type="text" value="${user.userName}" readonly="readonly">
+			<form:input type="text" value="${user.userName}" path="userName"/>
 		</div>
 		<div>
 			<label for="">연락처 1 : </label> 
-			<input type="text" value="" readonly="readonly"> 
+			<input type="text" value=""> 
 			<label>국가 : </label> 
-			<input type="text" value="" readonly="readonly">
+			<input type="text" value="">
 		</div>
 		<div>
 			<label for="">주소 : </label> 
-			<input type="text" value="" readonly="readonly">
+			<input type="text" value="">
 		</div>
 		<div>
 			<label for="">성별 : </label> 
-			<input type="text" value="" readonly="readonly">
+			<input type="text" value="">
 		</div>
 		<div>
 			<label for="">생년월일 : </label> 
-			<input type="text" value="" readonly="readonly">
+			<input type="text" value="">
 		</div>
 		<div>
 			<label for="">닉네임 : </label> 
-			<input type="text" value="${user.userNickName }" readonly="readonly">
+			<input type="text" value="${user.userNickName }">
 		</div>
 		<div>
-		    <a href="/userAdmin/update/${user.userNo}"><button type="button">수정하기</button></a>
+		   <input type="submit" value="수정하기"/>
 		</div>
-	</form>
+	</form:form>
 </div>
 </body>
 </html>
