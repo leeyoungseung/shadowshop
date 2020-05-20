@@ -63,12 +63,12 @@
 <script type="template" id="searchTemplate" type="text/x-handlebars-template">
 {{#each .}}
         <tr class="searchedList">
-            <td>{{userNo}}</td>
-            <td><a href="/userAdmin/info/{{userNo}}">{{userWebId}}</a></td>
-            <td>{{userName}}</td>
-            <td>{{userNickName}}</td>
-            <td>{{prettifyDate userJoinedDate}}</td>
-            <td>{{userStatus}}</td>
+            <td>{{user.no}}</td>
+            <td><a href="/userAdmin/info/{{user.no}}">{{user.id}}</a></td>
+            <td>{{user.name}}</td>
+            <td>{{user.nickname}}</td>
+            <td>{{prettifyDate user.joineddate}}</td>
+            <td>{{user.userstatus}}</td>
         </tr>
 {{/each}}
 </script>

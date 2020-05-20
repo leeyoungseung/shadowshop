@@ -4,8 +4,13 @@ import java.util.List;
 
 import com.shadowshop.app.utils.PagingUtil;
 
-public class UserInfosAdminDTO extends BaseDTO {
+public class UserInfoListAdminDTO extends BaseDTO {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5256711340417279099L;
+	
 	PagingUtil pagingUtil;
 	List<UserInfoAdminDTO> userInfoList;
 	

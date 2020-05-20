@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shadowshop.app.dto.PagingDTO;
 import com.shadowshop.app.dto.UserInfoAdminDTO;
-import com.shadowshop.app.dto.UserInfosAdminDTO;
+import com.shadowshop.app.dto.UserInfoListAdminDTO;
 import com.shadowshop.app.service.UserService;
 import com.shadowshop.app.utils.PagingUtil;
 
@@ -36,11 +36,11 @@ public class UserAdminRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public UserInfosAdminDTO userList(@ModelAttribute("paging") PagingDTO dto,
+	public UserInfoListAdminDTO userList(@ModelAttribute("paging") PagingDTO dto,
 			Model model) {
 		logger.info("Welcome to UserAdminList");
 		logger.info(dto.toString());
-		UserInfosAdminDTO returnDto = new UserInfosAdminDTO();
+		UserInfoListAdminDTO returnDto = new UserInfoListAdminDTO();
 		
 		List<UserInfoAdminDTO> list = userService.getUsers(dto);
 		PagingUtil pu = new PagingUtil();

@@ -22,21 +22,45 @@ public class UserAdminServiceImpl implements UserService {
 	
 	public UserAdminServiceImpl() {
 		list = new ArrayList<UserInfoAdminDTO>();
-		list.add(new UserInfoAdminDTO(1,"lee-y1@gmail.com","lee-y1","david1",new Date(),new Date(),"normal"));
-		list.add(new UserInfoAdminDTO(2,"lee-y2@gmail.com","lee-y2","david2",new Date(),new Date(),"block"));
-		list.add(new UserInfoAdminDTO(3,"lee-y3@gmail.com","lee-y3","david3",new Date(),new Date(),"special"));
-		list.add(new UserInfoAdminDTO(4,"lee-y4@gmail.com","lee-y4","david4",new Date(),new Date(),"removed"));
-		list.add(new UserInfoAdminDTO(5,"lee-y5@gmail.com","lee-y5","david5",new Date(),new Date(),"normal"));
-		list.add(new UserInfoAdminDTO(6,"lee-y6@gmail.com","lee-y6","david6",new Date(),new Date(),"normal"));
-		list.add(new UserInfoAdminDTO(7,"lee-y7@gmail.com","lee-y7","david7",new Date(),new Date(),"block"));
-		list.add(new UserInfoAdminDTO(8,"lee-y8@gmail.com","lee-y8","david8",new Date(),new Date(),"special"));
-		list.add(new UserInfoAdminDTO(9,"lee-y9@gmail.com","lee-y9","david9",new Date(),new Date(),"removed"));
-		list.add(new UserInfoAdminDTO(10,"lee-y10@gmail.com","lee-y10","david10",new Date(),new Date(),"normal"));
-		list.add(new UserInfoAdminDTO(11,"lee-y11@gmail.com","lee-y11","david11",new Date(),new Date(),"normal"));
-		list.add(new UserInfoAdminDTO(12,"lee-y12@gmail.com","lee-y12","david12",new Date(),new Date(),"block"));
-		list.add(new UserInfoAdminDTO(13,"lee-y13@gmail.com","lee-y13","david13",new Date(),new Date(),"special"));
-		list.add(new UserInfoAdminDTO(14,"lee-y14@gmail.com","lee-y14","david14",new Date(),new Date(),"removed"));
-		list.add(new UserInfoAdminDTO(15,"lee-y15@gmail.com","lee-y15","david15",new Date(),new Date(),"normal"));
+		UserInfoAdminDTO dto1 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto2 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto3 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto4 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto5 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto6 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto7 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto8 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto9 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto10 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto11 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto12 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto13 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto14 = new UserInfoAdminDTO();
+		UserInfoAdminDTO dto15 = new UserInfoAdminDTO();
+		UserVO vo1 = new UserVO();
+		vo1.setNo(1);
+		vo1.setId("lee-y0001@gmail.com");
+		vo1.setName("Lee");
+		vo1.setNickname("Build Tiger");
+		vo1.setJoineddate(new Date());
+		dto1.setUser(vo1);
+		
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		list.add(dto1);
+		
 	}
 
 	@Override
@@ -69,12 +93,12 @@ public class UserAdminServiceImpl implements UserService {
 	@Override
 	public UserInfoAdminDTO getUser(int id) {
 		UserInfoAdminDTO dto = null; 
-		for (UserInfoAdminDTO var : list) {
-			if (var.getUserNo() == id) {
-				dto = var;
-				break;
-			}
-		}
+//		for (UserInfoAdminDTO var : list) {
+//			if (var.getUserNo() == id) {
+//				dto = var;
+//				break;
+//			}
+//		}
 		
 		return dto;
 	}
