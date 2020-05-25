@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.shadowshop.app.dto.MemberInfoAdminDTO;
 import com.shadowshop.app.dto.PagingDTO;
-import com.shadowshop.app.dto.UserInfoAdminDTO;
 import com.shadowshop.app.dto.UserInfoListAdminDTO;
-import com.shadowshop.app.service.UserService;
+import com.shadowshop.app.service.MemberService;
 import com.shadowshop.app.utils.PagingUtil;
 
 @RestController
 @RequestMapping("/userAdminRest")
-public class UserAdminRestController {
+public class MemberAdminRestController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserAdminRestController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberAdminRestController.class);
 	
 	@Autowired
-	private UserService userService;
+	private MemberService memberService;
 	
 	/**
 	 * 유저 목록
@@ -42,7 +42,7 @@ public class UserAdminRestController {
 		logger.info(dto.toString());
 		UserInfoListAdminDTO returnDto = new UserInfoListAdminDTO();
 		
-		List<UserInfoAdminDTO> list = userService.getUsers(dto);
+		List<MemberInfoAdminDTO> list = memberService.getMembers(dto);
 		PagingUtil pu = new PagingUtil();
 		pu.setDto(dto);
 		//pu.setStartPage(dto.getCurrentPage());
@@ -63,7 +63,7 @@ public class UserAdminRestController {
 	 * @return
 	 */
 	@RequestMapping(value="/block/{id}" , method = RequestMethod.PUT)
-	public UserInfoAdminDTO userBlock(@PathVariable("id") String id) {
+	public MemberInfoAdminDTO userBlock(@PathVariable("id") String id) {
 		
 		return null;
 	}

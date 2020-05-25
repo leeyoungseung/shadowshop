@@ -1,21 +1,21 @@
 package com.shadowshop.app.dto;
 
-import com.shadowshop.app.vo.UserVO;
+import com.shadowshop.app.vo.MemberVO;
 
-public class UserInfoAdminDTO extends BaseDTO {
+public class MemberInfoAdminDTO extends BaseDTO {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7264937865594345273L;
 	
-	UserVO user;
+	MemberVO user;
 
-	public UserVO getUser() {
+	public MemberVO getUser() {
 		return user;
 	}
 
-	public void setUser(UserVO user) {
+	public void setUser(MemberVO user) {
 		this.user = user;
 	}
 

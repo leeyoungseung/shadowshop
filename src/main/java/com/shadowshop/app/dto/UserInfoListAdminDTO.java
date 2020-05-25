@@ -12,7 +12,7 @@ public class UserInfoListAdminDTO extends BaseDTO {
 	private static final long serialVersionUID = 5256711340417279099L;
 	
 	PagingUtil pagingUtil;
-	List<UserInfoAdminDTO> userInfoList;
+	List<MemberInfoAdminDTO> userInfoList;
 	
 	public PagingUtil getPagingUtil() {
 		return pagingUtil;
@@ -20,10 +20,10 @@ public class UserInfoListAdminDTO extends BaseDTO {
 	public void setPagingUtil(PagingUtil pagingUtil) {
 		this.pagingUtil = pagingUtil;
 	}
-	public List<UserInfoAdminDTO> getUserInfoList() {
+	public List<MemberInfoAdminDTO> getUserInfoList() {
 		return userInfoList;
 	}
-	public void setUserInfoList(List<UserInfoAdminDTO> userInfoList) {
+	public void setUserInfoList(List<MemberInfoAdminDTO> userInfoList) {
 		this.userInfoList = userInfoList;
 	}
 	@Override

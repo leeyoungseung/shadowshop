@@ -3,7 +3,7 @@ package com.shadowshop.app.vo;
 import java.util.Date;
 
 // 유저테이블 
-public class UserVO {
+public class MemberVO {
 
 	// 번호
 	private Integer no;
@@ -226,7 +226,7 @@ public class UserVO {
 	}
 
 	// User 모델 복사
-	public void CopyData(UserVO param) {
+	public void CopyData(MemberVO param) {
 		this.no = param.getNo();
 		this.id = param.getId();
 		this.password = param.getPassword();
@@ -251,7 +251,7 @@ public class UserVO {
 
 	@Override
 	public String toString() {
-		return "UserVO [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", cpnumber="
+		return "MemberVO [no=" + no + ", id=" + id + ", password=" + password + ", name=" + name + ", cpnumber="
 				+ cpnumber + ", phonenumber=" + phonenumber + ", country=" + country + ", postalCode=" + postalCode
 				+ ", address1=" + address1 + ", address2=" + address2 + ", address3=" + address3 + ", address4="
 				+ address4 + ", sex=" + sex + ", birthday=" + birthday + ", nickname=" + nickname + ", joineddate="

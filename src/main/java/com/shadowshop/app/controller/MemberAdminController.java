@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.shadowshop.app.dto.UserInfoAdminDTO;
-import com.shadowshop.app.service.UserService;
+import com.shadowshop.app.dto.MemberInfoAdminDTO;
+import com.shadowshop.app.service.MemberService;
 
 @Controller
 @RequestMapping("/userAdmin")
-public class UserAdminController {
+public class MemberAdminController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserAdminController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberAdminController.class);
 	
 	@Autowired
-	private UserService userService;
+	private MemberService userService;
 	
 	/**
 	 * 회원 관리 메인
@@ -44,7 +44,7 @@ public class UserAdminController {
 	@RequestMapping(value = "/info/{userNo}", method = RequestMethod.GET)
 	public String getUserInfoOne(@PathVariable("userNo") int userNo,Model model) {
 		logger.info("Welcome to getUserInfoOne Page");
-		UserInfoAdminDTO user = userService.getUser(userNo);
+		MemberInfoAdminDTO user = userService.getMember(userNo);
 		model.addAttribute("user", user);
 		
 		return "/userAdmin/userAdminRead";
@@ -59,7 +59,7 @@ public class UserAdminController {
 	@RequestMapping(value = "/update/{userNo}", method = RequestMethod.GET)
 	public String updateUserInfo(@PathVariable("userNo") int userNo,Model model) {
 		logger.info("Welcome to updateUserInfo Page");
-		UserInfoAdminDTO user = userService.getUser(userNo);
+		MemberInfoAdminDTO user = userService.getMember(userNo);
 		model.addAttribute("user", user);
 		
 		return "/userAdmin/userAdminUpdate";
@@ -72,7 +72,7 @@ public class UserAdminController {
 	 * @return
 	 */
 	@RequestMapping(value = "/update/{userNo}", method = RequestMethod.POST)
-	public String updateUserInfo(UserInfoAdminDTO dto,
+	public String updateUserInfo(MemberInfoAdminDTO dto,
 			BindingResult result,Model model){
 		logger.info("Welcome to updateUserInfo POST");
 		logger.info(dto.toString());

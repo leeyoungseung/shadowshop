@@ -69,12 +69,12 @@ COMMENT ON COLUMN CATEGORY.updatedDate IS '레코드갱신일'
 
 
 -- CATEGORY Table Create SQL
-CREATE TABLE USER
+CREATE TABLE MEMBER
 (
     no               INT                          NOT NULL, 
     id               NVARCHAR2(20)                NOT NULL, 
     password         NVARCHAR2(20)                NOT NULL, 
-    name             NVARCHAR2(20)VARCHAR2(20)    NOT NULL, 
+    name             NVARCHAR2(20)                NOT NULL, 
     cpNumber         NVARCHAR2(20)                NOT NULL, 
     phoneNumber      NVARCHAR2(20)                NOT NULL, 
     country          NVARCHAR2(20)                NOT NULL, 
@@ -95,16 +95,16 @@ CREATE TABLE USER
 )
 /
 
-CREATE SEQUENCE USER_SEQ
+CREATE SEQUENCE MEMBER_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
 CREATE OR REPLACE TRIGGER USER_AI_TRG
-BEFORE INSERT ON USER 
+BEFORE INSERT ON MEMBER 
 REFERENCING NEW AS NEW FOR EACH ROW 
 BEGIN 
-    SELECT USER_SEQ.NEXTVAL
+    SELECT MEMBER_SEQ.NEXTVAL
     INTO :NEW.no
     FROM DUAL;
 END;
