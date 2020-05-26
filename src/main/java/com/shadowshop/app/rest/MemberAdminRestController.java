@@ -47,7 +47,7 @@ public class MemberAdminRestController {
 		pu.setDto(dto);
 		//pu.setStartPage(dto.getCurrentPage());
 		//pu.setEndPage(dto);
-		pu.setTotalCount(15);
+		pu.setTotalCount(list.size());
 		model.addAttribute("paging", pu);
 		logger.info(pu.toString());
 		

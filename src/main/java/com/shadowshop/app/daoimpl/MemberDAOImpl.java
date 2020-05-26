@@ -19,17 +19,17 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private static String namespace = "com.shadowshop.mapper.UserMapper";
+	private static String namespace = "com.shadowshop.mapper.MemberMapper";
 
 	@Override
 	public List<MemberVO> getMemberList() {
-		
+		logger.info("getMemberList Start");
 		return sqlSession.selectList(namespace + ".memberList");
 	}
 
 	@Override
 	public MemberVO getMemberOne(Integer no) {
-
+		logger.info("getMemberOne Start");
 		return sqlSession.selectOne(namespace + ".memberOne", no);
 	}
 	

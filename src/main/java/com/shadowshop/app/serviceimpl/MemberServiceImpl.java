@@ -79,18 +79,25 @@ public class MemberServiceImpl implements MemberService {
 		int maxCountSu = perCount * dto.getCurrentPage();
 
 		List<MemberInfoAdminDTO> returnList = new ArrayList<MemberInfoAdminDTO>();
-		int su = 0;
-		for(MemberInfoAdminDTO var : list) {
-			logger.info("[1] su : "+su+", start : "+start+", perCount : "+perCount);
-			if(su < start) {
-				su++;
-				continue;
-			}
-			if (maxCountSu <= su) {
-				break;
-			}
-			returnList.add(var);
-			su++;
+//		int su = 0;
+//		for(MemberInfoAdminDTO var : list) {
+//			logger.info("[1] su : "+su+", start : "+start+", perCount : "+perCount);
+//			if(su < start) {
+//				su++;
+//				continue;
+//			}
+//			if (maxCountSu <= su) {
+//				break;
+//			}
+//			returnList.add(var);
+//			su++;
+//		}
+		List<MemberVO> memberlist = dao.getMemberList();
+		for (MemberVO vo : memberlist) {
+			MemberInfoAdminDTO d = new MemberInfoAdminDTO(); 
+			logger.info(vo.toString());
+			d.setUser(vo);
+			returnList.add(d);
 		}
 		
 		return returnList;
