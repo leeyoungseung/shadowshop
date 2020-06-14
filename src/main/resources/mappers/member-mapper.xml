@@ -4,7 +4,20 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shadowshop.mapper.MemberMapper">
     <select id="memberList" resultType="com.shadowshop.app.vo.MemberVO">
-        select * from member
+        select * from 
+            (select row_number() over (order by no) num  
+                ,m.* from member m order by no
+            )
+        where no between #{start} and #{perCount} 
     </select>
 
+    <select id="memberCount" resultType="java.lang.Integer">
+        select count(*) from member
+    </select>
+    
+    <select id="memberOne" resultType="com.shadowshop.app.vo.MemberVO">
+        select * from member where no = #{no}
+    </select>
+    
+    
 </mapper>

@@ -2,7 +2,9 @@ package com.shadowshop.app.serviceimpl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,75 +26,27 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO dao;
 	
-	List<MemberInfoAdminDTO> list = null;
-	
 	public MemberServiceImpl() {
-		list = new ArrayList<MemberInfoAdminDTO>();
-		MemberInfoAdminDTO dto1 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto2 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto3 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto4 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto5 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto6 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto7 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto8 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto9 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto10 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto11 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto12 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto13 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto14 = new MemberInfoAdminDTO();
-		MemberInfoAdminDTO dto15 = new MemberInfoAdminDTO();
-		MemberVO vo1 = new MemberVO();
-		vo1.setNo(1);
-		vo1.setId("lee-y0001@gmail.com");
-		vo1.setName("Lee");
-		vo1.setNickname("Build Tiger");
-		vo1.setJoineddate(new Date());
-		dto1.setUser(vo1);
-		
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
-		list.add(dto1);
 		
 	}
 
 	@Override
-	public List<MemberInfoAdminDTO> getMembers(PagingDTO dto) {
-
-		
-		int start = dto.getPageStart();
-		int perCount = dto.getPerPageCount(); //5개 까지 출력
-		int size = list.size();     //전체 사이즈
-		int maxCountSu = perCount * dto.getCurrentPage();
-
+	public Map getMembers(PagingDTO dto) {
+		Map res = new HashMap();
 		List<MemberInfoAdminDTO> returnList = new ArrayList<MemberInfoAdminDTO>();
-//		int su = 0;
-//		for(MemberInfoAdminDTO var : list) {
-//			logger.info("[1] su : "+su+", start : "+start+", perCount : "+perCount);
-//			if(su < start) {
-//				su++;
-//				continue;
-//			}
-//			if (maxCountSu <= su) {
-//				break;
-//			}
-//			returnList.add(var);
-//			su++;
-//		}
-		List<MemberVO> memberlist = dao.getMemberList();
+		
+		
+		Integer totalCount = dao.getMemberCount();
+		
+		
+		
+		Integer start = dto.getPageStart();
+		Integer perCount = dto.getLimitCount();
+		logger.info("start : "+start +", perCount : "+perCount);
+		
+		List<MemberVO> memberlist = dao.getMemberList(start, perCount);
+		
+		
 		for (MemberVO vo : memberlist) {
 			MemberInfoAdminDTO d = new MemberInfoAdminDTO(); 
 			logger.info(vo.toString());
@@ -100,7 +54,11 @@ public class MemberServiceImpl implements MemberService {
 			returnList.add(d);
 		}
 		
-		return returnList;
+		res.put("pagingDTO", dto);
+		res.put("totalCount",totalCount);
+		res.put("memberInfoList", returnList);
+		
+		return res;
 	}
 
 	@Override

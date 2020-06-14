@@ -1,6 +1,7 @@
 package com.shadowshop.app.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.shadowshop.app.dto.MemberInfoAdminDTO;
 import com.shadowshop.app.dto.PagingDTO;
@@ -13,7 +14,7 @@ public interface MemberService {
 	 * @param dto
 	 * @return
 	 */
-	List<MemberInfoAdminDTO> getMembers(PagingDTO dto);
+	Map getMembers(PagingDTO dto);
 	
 	/**
 	 * 유저 상세

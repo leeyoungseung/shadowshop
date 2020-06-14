@@ -1,6 +1,8 @@
 package com.shadowshop.app.daoimpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -22,9 +24,17 @@ public class MemberDAOImpl implements MemberDAO {
 	private static String namespace = "com.shadowshop.mapper.MemberMapper";
 
 	@Override
-	public List<MemberVO> getMemberList() {
+	public List<MemberVO> getMemberList(Integer start, Integer perCount) {
 		logger.info("getMemberList Start");
-		return sqlSession.selectList(namespace + ".memberList");
+		Map map = new HashMap();
+		map.put("start", start);
+		map.put("perCount", perCount);
+		return sqlSession.selectList(namespace + ".memberList", map);
+	}
+	
+	@Override
+	public Integer getMemberCount() {
+		return sqlSession.selectOne(namespace + ".memberCount");
 	}
 
 	@Override

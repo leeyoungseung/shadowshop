@@ -1,6 +1,7 @@
 package com.shadowshop.app.rest;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,17 +43,16 @@ public class MemberAdminRestController {
 		logger.info(dto.toString());
 		UserInfoListAdminDTO returnDto = new UserInfoListAdminDTO();
 		
-		List<MemberInfoAdminDTO> list = memberService.getMembers(dto);
+		Map map = memberService.getMembers(dto);
 		PagingUtil pu = new PagingUtil();
-		pu.setDto(dto);
-		//pu.setStartPage(dto.getCurrentPage());
-		//pu.setEndPage(dto);
-		pu.setTotalCount(list.size());
-		model.addAttribute("paging", pu);
+		
+		pu.setDto((PagingDTO) map.get("pagingDTO"));
+		pu.setTotalCount((int) map.get("totalCount"));
+
 		logger.info(pu.toString());
 		
 		returnDto.setPagingUtil(pu);
-		returnDto.setUserInfoList(list);
+		returnDto.setUserInfoList((List<MemberInfoAdminDTO>) map.get("memberInfoList"));
 		
 		return returnDto;
 	}

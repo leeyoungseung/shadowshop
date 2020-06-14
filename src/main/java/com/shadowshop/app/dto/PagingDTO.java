@@ -35,7 +35,15 @@ public class PagingDTO extends BaseDTO {
 	}
 	
 	public int getPageStart() {
-		return (this.currentPage -1 ) * perPageCount;
+		int start = (this.currentPage -1 ) * perPageCount;
+		if(perPageCount <= start) {
+			start++;
+		}
+		return start;
+	}
+	
+	public int getLimitCount() {
+		return ((this.currentPage -1 ) * perPageCount) + perPageCount;
 	}
 
 	@Override
